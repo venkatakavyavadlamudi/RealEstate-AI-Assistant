@@ -1,23 +1,36 @@
 import os
+from pathlib import Path
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-import os
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 EMBEDDING_MODEL = os.getenv(
     "EMBEDDING_MODEL",
-    "models/embedding-001"
+    "models/gemini-embedding-001"
 )
 
-FAISS_INDEX_PATH = os.getenv(
-    "FAISS_INDEX_PATH",
-    "data/faiss_index"
+LLM_MODEL = os.getenv(
+    "LLM_MODEL",
+    "gemini-flash-lite-latest"
 )
 
+# Data paths
+DATA_DIR = BASE_DIR / "data" / "real_estate_kb_dataset"
+
+# FAISS
+FAISS_INDEX_PATH = BASE_DIR / "vector_db" / "faiss_index"
+
+# Retrieval
 TOP_K_RESULTS = int(
     os.getenv("TOP_K_RESULTS", 5)
-)print("=" * 50)
-print("GOOGLE_API_KEY FOUND:", GOOGLE_API_KEY is not None)
-print("KEY LENGTH:", len(GOOGLE_API_KEY) if GOOGLE_API_KEY else 0)
-print("=" * 50)
+)
+
+# Text chunking
+CHUNK_SIZE = int(
+    os.getenv("CHUNK_SIZE", 1000)
+)
+
+CHUNK_OVERLAP = int(
+    os.getenv("CHUNK_OVERLAP", 200)
+)
