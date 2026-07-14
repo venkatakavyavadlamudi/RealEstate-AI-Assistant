@@ -3,9 +3,12 @@ from utils.config import GOOGLE_API_KEY, EMBEDDING_MODEL
 
 
 def get_embedding_model():
-    """
-    Returns the Google Embedding Model.
-    """
+    print("GOOGLE_API_KEY exists:", GOOGLE_API_KEY is not None)
+
+    if GOOGLE_API_KEY:
+        print("GOOGLE_API_KEY length:", len(GOOGLE_API_KEY))
+    else:
+        print("GOOGLE_API_KEY is missing")
 
     embeddings = GoogleGenerativeAIEmbeddings(
         model=EMBEDDING_MODEL,

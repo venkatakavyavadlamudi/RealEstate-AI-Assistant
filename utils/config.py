@@ -24,6 +24,10 @@ VECTOR_DB_DIR = BASE_DIR / "vector_db"
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
+print("GOOGLE_API_KEY =", GOOGLE_API_KEY)
+
+if GOOGLE_API_KEY is None:
+    raise Exception("GOOGLE_API_KEY NOT FOUND")
 # ==========================
 # Supported File Types
 # ==========================
